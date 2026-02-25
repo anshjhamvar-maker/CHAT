@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LAN Chat (Static Demo)</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root[data-theme="dark"] {
+  --bg: #0d0f14;
+  --bg2: #13161e;
+  --bg3: #1c2030;
+  --border: #2a2f42;
+  --text: #e8eaf0;
+  --muted: #6b7194;
+  --accent: #7c6af7;
+  --accent2: #f76ab4;
+  --bubble-me: linear-gradient(135deg,#7c6af7,#a78bfa);
+  --bubble-them: #1c2030;
+  --online: #3dd68c;
+  --danger: #f76a6a;
+  --shadow: 0 8px 40px #0007;
+}
+:root[data-theme="light"] {
+  --bg: #f0f2fa;
+  --bg2: #fff;
+  --bg3: #e8eaf4;
+  --border: #d0d4ee;
+  --text: #1a1c2e;
+  --muted: #8088b0;
+  --accent: #5b4de8;
+  --accent2: #d94fa0;
+  --bubble-me: linear-gradient(135deg,#5b4de8,#7c6af7);
+  --bubble-them: #e8eaf4;
+  --online: #22a06b;
+  --danger: #d94f4f;
+  --shadow: 0 8px 40px #0001;
+}
+*{box-sizing:border-box;margin:0;padding:0;transition:background .3s,color .3s}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+/* ── Auth ── */
+#auth-page{display:flex;align-items:center;justify-content:center;height:100vh;background:var(--bg)}
+.auth-box{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:48px 40px;width:360px;box-shadow:var(--shadow);animation:slideUp .5s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.auth-box h1{font-size:2rem;font-weight:800;margin-bottom:6px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.auth-box p{color:var(--muted);font-size:.85rem;margin-bottom:28px;font-family:'Space Mono',monospace}
+.auth-box input{width:100%;padding:12px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'Syne',sans-serif;font-size:.95rem;margin-bottom:12px;outline:none}
+.auth-box input:focus{border-color:var(--accent)}
+.btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:10px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;margin-top:4px;letter-spacing:.5px}
+.btn:hover{opacity:.88;transform:translateY(-1px)}
+.auth-switch{text-align:center;margin-top:18px;font-size:.85rem;color:var(--muted)}
+.auth-switch a{color:var(--accent);cursor:pointer;text-decoration:none;font-weight:700}
+.err{color:var(--danger);font-size:.82rem;margin-bottom:8px;font-family:'Space Mono',monospace}
+
+/* ── App Shell ── */
+#app-page{display:none;flex-direction:row;height:100vh}
+
+/* ── Sidebar ── */
+.sidebar{width:240px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
+.sidebar-header{padding:20px 16px 12px;border-bottom:1px solid var(--border)}
+.sidebar-header .logo{font-size:1.3rem;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sidebar-header .tagline{font-size:.72rem;color:var(--muted);font-family:'Space Mono',monospace}
+.sidebar-nav{padding:10px 8px;flex:1;overflow-y:auto}
+.nav-label{font-size:.68rem;font-family:'Space Mono',monospace;color:var(--muted);padding:8px 8px 4px;letter-spacing:1px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:10px;cursor:pointer;font-size:.9rem;font-weight:600;margin-bottom:2px;border:none;background:transparent;color:var(--text);width:100%;text-align:left}
+.nav-item:hover,.nav-item.active{background:var(--bg3)}
+.nav-item.active{border-left:3px solid var(--accent);padding-left:7px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--online);flex-shrink:0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 #3dd68c55}50%{box-shadow:0 0 0 5px #3dd68c00}}
+.online-list{padding:4px 8px 10px}
+.online-tag{display:flex;align-items:center;gap:6px;padding:6px 10px;font-size:.82rem;color:var(--text)}
+.sidebar-footer{padding:12px 16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0}
+.sidebar-footer .username{font-size:.88rem;font-weight:700;flex:1}
+.icon-
